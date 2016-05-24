@@ -24,8 +24,8 @@ public class DEV018x2 extends PApplet {
 
     public void Convert(double eig1, double eig2, int cat) {
         try {
-            float pointA = map((float) eig1, 0, 70, 25, 580);
-            float pointB = map((float) eig2, 1400, 0, 30, 525);
+            float pointA = map((float) eig1, 0, 70, 25, 600);
+            float pointB = map((float) eig2, 1800, 0, 30, 665);
             
             switch(cat){
                 case 1:
@@ -80,7 +80,7 @@ public class DEV018x2 extends PApplet {
 
     @Override
     public void settings() {
-        size(600, 600);
+        size(650, 760);
     }
 
     @Override
@@ -94,30 +94,30 @@ public class DEV018x2 extends PApplet {
         DecimalFormat decimalFormat = new DecimalFormat("#");
 
         fill(0, 0, 0);
-        line(25, 525, 580, 525);   //x-axis
-        line(25, 30, 25, 525);      //y-axis
-        text("EIG1", 550, 565);     //x-axis text
+        line(25, 665, 600, 665);   //x-axis
+        line(25, 30, 25, 665);      //y-axis
+        text("EIG1", 550, 695);     //x-axis text
         text("EIG2", 25, 20);       //y-axis text
 
         // points x-axis
         int x = 25;
         for (int i = 0; i < 8; i++) {
-            ellipse(x, 525, 4, 4);
+            ellipse(x, 665, 4, 4);
             x = x + 78;
         }
 
         // points y-axis
         int y = 35;
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 19; i++) {
             ellipse(25, y, 4, 4);
             y = y + 35;
         }
 
         //numbers points y-axis
         int xt = 0;
-        int yt = 35;
-        int v = 1400;
-        for (int i = 0; i < 15; i++) {
+        int yt = 37;
+        int v = 1800;
+        for (int i = 0; i < 19; i++) {
             text(decimalFormat.format(v), xt, yt);
             yt = yt + 35;
             v = v - 100;
@@ -125,7 +125,7 @@ public class DEV018x2 extends PApplet {
 
         //numbers points x-axis
         int xs = 25;
-        int ys = 545;
+        int ys = 680;
         int vs = 0;
         for (int i = 0; i < 8; i++) {
             text(decimalFormat.format(vs), xs, ys);
