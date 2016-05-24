@@ -141,6 +141,29 @@ public class DEV018x2 extends PApplet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        //Legenda
+
+        fill(0, 255, 0); //green
+        ellipse(550, 400, 10, 10);
+        fill(0, 0, 0);
+        text("CAT = 1", 565, 404);
+
+        fill(0, 0, 255); //blue
+        ellipse(550, 425, 10, 10);
+        fill(0, 0, 0);
+        text("CAT = 2", 565, 429);
+
+        fill(255, 255, 0); //yellow
+        ellipse(550, 450, 10, 10);
+        fill(0, 0, 0);
+        text("CAT = 3", 565, 454);
+
+        fill(255, 0, 0); //red
+        ellipse(550, 475, 10, 10);
+        fill(0, 0, 0);
+        text("CAT = 4", 565, 479);
+        
     }
 
     public static void main(String[] args) {
