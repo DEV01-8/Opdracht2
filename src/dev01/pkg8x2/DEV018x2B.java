@@ -16,7 +16,7 @@ import processing.core.PApplet;
  *
  * @author Johan Bos
  */
-public class DEV018x2 extends PApplet {
+public class DEV018x2B extends PApplet {
 
     public static ArrayList CAT = new ArrayList();
     public static ArrayList EIG1 = new ArrayList();
@@ -167,7 +167,7 @@ public class DEV018x2 extends PApplet {
     }
 
     public static void main(String[] args) {
-        PApplet.main(new String[]{DEV018x2.class.getName()});
+        PApplet.main(new String[]{DEV018x2B.class.getName()});
         ReadText();
     }
 }
