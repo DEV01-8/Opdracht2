@@ -22,6 +22,7 @@ public class DEV018x2B extends PApplet {
     public static ArrayList EIG1 = new ArrayList();
     public static ArrayList EIG2 = new ArrayList();
 
+    //Convert size window with min and max values to fit in.
     public void Convert(double eig1, double eig2, int cat) {
         try {
             float pointA = map((float) eig1, 0, 70, 25, 600);
@@ -52,6 +53,7 @@ public class DEV018x2B extends PApplet {
         }
     }
 
+    //Read text file and place columns in Arraylists
     public static void ReadText() {
         try {
             //Read text file
