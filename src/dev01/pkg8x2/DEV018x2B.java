@@ -6,10 +6,10 @@
 package dev01.pkg8x2;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import processing.core.PApplet;
 
 /**
@@ -18,13 +18,12 @@ import processing.core.PApplet;
  */
 public class DEV018x2B extends PApplet {
 
-    public static ArrayList CAT = new ArrayList();
-    public static ArrayList EIG1 = new ArrayList();
-    public static ArrayList EIG2 = new ArrayList();
+    private final ArrayList<Integer> CAT = new ArrayList();
+    private final ArrayList<Double> EIG1 = new ArrayList();
+    private final ArrayList<Double> EIG2 = new ArrayList();
 
     //Convert size window with min and max values to fit in.
-    public void Convert(double eig1, double eig2, int cat) {
-        try {
+    private void convert(double eig1, double eig2, int cat) {
             float pointA = map((float) eig1, 0, 70, 25, 600);
             float pointB = map((float) eig2, 1800, 0, 30, 665);
             
@@ -47,27 +46,19 @@ public class DEV018x2B extends PApplet {
             }
             //Create point on map with x and y
             ellipse(pointA, pointB, 6, 6);
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     //Read text file and place columns in Arraylists
-    public static void ReadText() {
+    private void readText() {
         try {
             //Read text file
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Johan Bos\\Desktop\\scatterplot.txt"));
+            File path = new File("C:\\Users\\Johan Bos\\Desktop\\scatterplot.txt");
+            BufferedReader br = new BufferedReader(new FileReader(path));
             String line;
 
             br.readLine(); // This will read the first line
             String line1 = null;    //Skip first line
             DecimalFormat decimalFormat = new DecimalFormat("#");
-
-            //Clear Arraylists for correct order
-            CAT.clear();
-            EIG1.clear();
-            EIG2.clear();
 
             while ((line1 = br.readLine()) != null) {
                 String[] columns = line1.split("\t");
@@ -89,6 +80,7 @@ public class DEV018x2B extends PApplet {
     public void setup() {
         //Set Title
         surface.setTitle("Scatterplot");
+        readText();
     }
 
     @Override
@@ -138,7 +130,7 @@ public class DEV018x2B extends PApplet {
         //Insert points to create scatter
         try {
             for (int i = 0; i < EIG1.size(); i++) {
-                Convert((double) EIG1.get(i), (double) EIG2.get(i), (int) CAT.get(i));
+                convert((double) EIG1.get(i), (double) EIG2.get(i), (int) CAT.get(i));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -170,6 +162,5 @@ public class DEV018x2B extends PApplet {
 
     public static void main(String[] args) {
         PApplet.main(new String[]{DEV018x2B.class.getName()});
-        ReadText();
     }
 }
