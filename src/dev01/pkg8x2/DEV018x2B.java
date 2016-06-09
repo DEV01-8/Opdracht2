@@ -18,16 +18,14 @@ import processing.core.PApplet;
  */
 public class DEV018x2B extends PApplet {
 
-    private final ArrayList<Integer> CAT = new ArrayList();
-    private final ArrayList<Double> EIG1 = new ArrayList();
-    private final ArrayList<Double> EIG2 = new ArrayList();
+    private final ArrayList<Point> points = new ArrayList();
 
     //Convert size window with min and max values to fit in.
-    private void convert(double eig1, double eig2, int cat) {
-            float pointA = map((float) eig1, 0, 70, 25, 600);
-            float pointB = map((float) eig2, 1800, 0, 30, 665);
+    private void convert(Point point) {
+            float pointA = map((float) point.getEIG1(), 0, 70, 25, 600);
+            float pointB = map((float) point.getEIG2(), 1800, 0, 30, 665);
             
-            switch(cat){
+            switch(point.getCAT()){
                 case 1:
                     fill(0, 255, 0); //green
                     break;
@@ -62,9 +60,13 @@ public class DEV018x2B extends PApplet {
 
             while ((line1 = br.readLine()) != null) {
                 String[] columns = line1.split("\t");
-                CAT.add(decimalFormat.parse(columns[0]).intValue());
-                EIG1.add(decimalFormat.parse(columns[1]).doubleValue());
-                EIG2.add(decimalFormat.parse(columns[2]).doubleValue());
+
+                Point point = new Point(
+                decimalFormat.parse(columns[1]).doubleValue(),
+                decimalFormat.parse(columns[2]).doubleValue(),
+                decimalFormat.parse(columns[0]).intValue());
+                
+                points.add(point);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -128,14 +130,10 @@ public class DEV018x2B extends PApplet {
         }
 
         //Insert points to create scatter
-        try {
-            for (int i = 0; i < EIG1.size(); i++) {
-                convert((double) EIG1.get(i), (double) EIG2.get(i), (int) CAT.get(i));
+            for (int i = 0; i < points.size(); i++) {
+                convert(points.get(i));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
+       
         //Legenda
 
         fill(0, 255, 0); //green
